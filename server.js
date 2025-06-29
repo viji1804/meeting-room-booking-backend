@@ -11,7 +11,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://meeting-room-booking-frontend-chi.vercel.app", // put actual Vercel URL
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/users", authRoutes); // Signup/Login
